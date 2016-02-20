@@ -1,8 +1,5 @@
 package com.mygdx.game;
 
-/**
- * Created by Lanma on 20-Feb-16.
- */
 public class Player extends Car {
 
     static private Player player = null;

@@ -32,6 +32,12 @@ public class MyGdxGame extends ApplicationAdapter {
 		cam.position.set(cam.viewportWidth / 2f, cam.viewportHeight / 2f, 0);
 		cam.update();
 
+		map = new Map();
+		map.addStreet(true, WORLD_WIDTH/2);
+		map.addStreet(false, WORLD_HEIGHT/2);
+
+		//STREET OBJ --> player = new Player();
+
 		batch = new SpriteBatch();
 		car = new Texture("cotxeblaudonut.png");
 		artificial = new Texture("cotxenormalgroc.png");
@@ -51,6 +57,11 @@ public class MyGdxGame extends ApplicationAdapter {
 	public void render () {
 		cam.update();
 		batch.setProjectionMatrix(cam.combined);
+		Pair<Double, Double> coord = player.getCoordinates();
+		//get player coordinates and set as center of camera
+		double x = coord.getKey();
+		double y = coord.getValue();
+		cam.position.set((float)x*WORLD_WIDTH, (float)y*WORLD_HEIGHT, 0);
 
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
