@@ -6,6 +6,7 @@ public class Cop extends Car{
 		super(street, position, speed);
 	}
 
+    @Override
 	public void next_position(){
 
 	}

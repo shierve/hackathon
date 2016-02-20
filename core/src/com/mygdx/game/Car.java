@@ -5,7 +5,7 @@ import com.badlogic.gdx.utils.Array;
 
 import java.util.Iterator;
 
-public class Car {
+public abstract class Car {
 	protected Street street;
 	protected double position;
 	protected double speed;
@@ -71,10 +71,38 @@ public class Car {
 		at_intersection = b;
 	}
 
-	public void turn_right(){
+    public void u_turn() {
+        //TODO: check if within map
+        direction*=-1;
+        position += speed*direction;
+    }
 
+	public void turn_right(){
+        //change street
+        street = (street.isVertical() ? intersection.getHorizontal() : intersection.getVertical());
+        //direction
+        if(!street.isVertical()) direction *= -1;
+        //new pos is exact pos of intersection
+        position = (street.isVertical() ? intersection.getHorizontal().getPosition() : intersection.getVertical().getPosition());
+        //rotate car TODO
 	}
 	public void turn_left(){
-
+        street = (street.isVertical() ? intersection.getHorizontal() : intersection.getVertical());
+        if(street.isVertical()) direction *= -1;
+        position = (street.isVertical() ? intersection.getHorizontal().getPosition() : intersection.getVertical().getPosition());
 	}
+
+    public void go_straight() {
+        //TODO: check
+        position += speed*direction;
+    }
+
+    public void stop() {
+        speed = 0;
+    }
+
+    //public static
+
+    public abstract void next_position();
+
 }

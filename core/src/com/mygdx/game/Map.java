@@ -8,6 +8,9 @@ public class Map {
 	private Array<Intersection> intersections;
 	private Array<Car> cars;
 
+	//SPRITE
+	//generacio del mapa
+
 
 	public Array<Street> getVertical_streets(){
 		return vertical_streets;
@@ -25,17 +28,17 @@ public class Map {
 		return cars;
 	}
 
-	private void addIntersection(double x, double y){
-		Intersection i = new Intersection(x, y);
+	private void addIntersection(double x, double y, Street h, Street v){
+		Intersection i = new Intersection(x, y, h, v);
 		intersections.add(i);
 	}
 
-	private void addIntersections(boolean vertical, double position){
-		Array<Street> a = (vertical ? horizontal_streets : vertical_streets);
+	private void addIntersections(Street s){
+		Array<Street> a = (s.isVertical() ? horizontal_streets : vertical_streets);
 		for(int i = 0; i < a.size; ++i){
-			double x = (vertical ? position : a.get(i).getPosition());
-			double y = (vertical ? a.get(i).getPosition() : position);
-			addIntersection(x, y);
+			double x = (s.isVertical() ? s.getPosition() : a.get(i).getPosition());
+			double y = (s.isVertical() ? a.get(i).getPosition() : s.getPosition());
+			addIntersection(x, y, (s.isVertical() ? a.get(i) : s), (s.isVertical() ? s : a.get(i)));
 		}
 	}
 
@@ -44,7 +47,7 @@ public class Map {
 		if(vertical) vertical_streets.add(s);
 		else horizontal_streets.add(s);
 
-		addIntersections(vertical, position);
+		addIntersections(s);
 	}
 
 	public void addCar(Car c){
