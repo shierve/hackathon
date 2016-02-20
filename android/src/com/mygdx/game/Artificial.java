@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class Artificial extends Car{
 
-	public Artificial(){
-
+	public Artificial(Street street, double position, double speed){
+		super(street, position, speed);
 	}
 
 	public void next_position(){
@@ -22,7 +22,7 @@ public class Artificial extends Car{
 				//turn left
 			}
 		}
-		if(){
+		else {
 			//TODO: check if within map
 			position += speed;
 		}
