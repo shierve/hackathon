@@ -6,39 +6,29 @@ import java.util.Random;
 
 public class Artificial extends Car{
 
-	public Artificial(){
-
+	public Artificial(Street street, double position, double speed) {
+        super(street, position, speed);
 	}
 
-	public void next_position(Array<Intersection> intersections){
+    @Override
+	public void next_position(){
 		if(at_intersection){
 			Random r = new Random();
 			int rn = r.nextInt((3 - 1) + 1) + 1;
-			if(rn == 1){
-				//TODO: check if within map
-				position += speed*direction;
-			}
-			if(rn == 2){
-				//turn right
-				//change street
-				street = (street.isVertical() ? intersection.getHorizontal() : intersection.getVertical());
-				//direction
-				if(!street.isVertical()) direction *= -1;
-				//new pos is exact pos of intersection
-				position = (street.isVertical() ? intersection.getHorizontal().getPosition() : intersection.getVertical().getPosition());
-				//rotate car TODO
-
-			}
-			if(rn == 3){
-				//turn left
-				street = (street.isVertical() ? intersection.getHorizontal() : intersection.getVertical());
-				if(street.isVertical()) direction *= -1;
-				position = (street.isVertical() ? intersection.getHorizontal().getPosition() : intersection.getVertical().getPosition());
-			}
+            switch (rn) {
+                case 1:
+                    go_straight();
+                    break;
+                case 2:
+                    turn_right();
+                    break;
+                case 3:
+                    turn_left();
+                    break;
+            }
 		}
 		else{
-			//TODO: check
-			position += speed;
+			go_straight();
 		}
 	}
 }
