@@ -1,11 +1,8 @@
 package com.mygdx.game;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 
 import java.util.Iterator;
-
-import javafx.util.Pair;
 
 public abstract class Car {
 
