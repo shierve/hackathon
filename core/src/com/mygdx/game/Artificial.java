@@ -7,7 +7,6 @@ import java.util.Random;
 public class Artificial extends Car{
 
 	public Artificial(){
-
 	}
 
 	public void next_position(Array<Intersection> intersections){
