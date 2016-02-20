@@ -161,6 +161,76 @@ public abstract class Car {
         return d_car_dir;
     }
 
+    public void setRelativeDirectionCourse(Direction dest) {
+        Direction my_dir = getCarDirection();
+        switch (my_dir) {
+            case UP:
+                switch (dest) {
+                    case UP:
+                        go_straight();
+                        break;
+                    case DOWN:
+                        u_turn();
+                        break;
+                    case RIGHT:
+                        turn_right();
+                        break;
+                    case LEFT:
+                        turn_left();
+                        break;
+                }
+                break;
+            case DOWN:
+                switch (dest) {
+                    case UP:
+                        u_turn();
+                        break;
+                    case DOWN:
+                        go_straight();
+                        break;
+                    case RIGHT:
+                        turn_left();
+                        break;
+                    case LEFT:
+                        turn_right();
+                        break;
+                }
+                break;
+            case RIGHT:
+                switch (dest) {
+                    case UP:
+                        turn_left();
+                        break;
+                    case DOWN:
+                        turn_right();
+                        break;
+                    case RIGHT:
+                        go_straight();
+                        break;
+                    case LEFT:
+                        u_turn();
+                        break;
+                }
+                break;
+            case LEFT:
+                switch (dest) {
+                    case UP:
+                        turn_right();
+                        break;
+                    case DOWN:
+                        turn_left();
+                        break;
+                    case RIGHT:
+                        u_turn();
+                        break;
+                    case LEFT:
+                        go_straight();
+                        break;
+                }
+                break;
+        }
+    }
+
     public abstract void next_position();
 
 }
