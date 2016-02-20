@@ -24,7 +24,7 @@
             android:theme="@style/GdxTheme">
         </activity>
         <activity
-            android:name=".HomeScreenActivity"
+            android:name=".DoughnutSurvival"
             android:label="@string/title_activity_home_screen"
             android:theme="@style/DefaultTheme">
             <intent-filter>

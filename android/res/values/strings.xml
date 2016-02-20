@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Doughnut Survival</string>
-    <string name="title_activity_home_screen">HomeScreenActivity</string>
+    <string name="title_activity_home_screen">Doughnut Survival</string>
     <string name="Start">Save Doughnuts</string>
 
 </resources>
