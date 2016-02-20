@@ -135,7 +135,9 @@ public abstract class Car {
         }
     }
 
-    public static Direction getPlayerCarDirection(Car dest, Car source) {
+    public static Direction getPlayerCarDirection(Car source) {
+        Car dest = Player.getCarInstance();
+
         Pair<Double,Double> d_car_coord = dest.getCoordinates();
         Pair<Double,Double> s_car_coord = source.getCoordinates();
 
