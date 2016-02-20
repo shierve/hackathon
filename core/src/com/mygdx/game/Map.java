@@ -8,6 +8,9 @@ public class Map {
 	private Array<Intersection> intersections;
 	private Array<Car> cars;
 
+	//SPRITE
+	//generacio del mapa
+
 
 	public Array<Street> getVertical_streets(){
 		return vertical_streets;
