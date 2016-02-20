@@ -8,9 +8,12 @@ public class Player extends Car {
         super(street, position, speed);
     }
 
-    public static void newInstance(Street street, double position, double speed){
-        if (player == null)
+    public static Player newInstance(Street street, double position, double speed){
+        if (player == null) {
             player = new Player(street, position, speed);
+            return player;
+        }
+        return null;
     }
 
     public static Car getCarInstance() {

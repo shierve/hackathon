@@ -11,6 +11,13 @@ public class Map {
 	//SPRITE
 	//generacio del mapa.
 
+	public Map(){
+		vertical_streets = new Array<Street>();
+		horizontal_streets = new Array<Street>();
+		intersections = new Array<Intersection>();
+		cars = new Array<Car>();
+	}
+
 
 	public Array<Street> getVertical_streets(){
 		return vertical_streets;
