@@ -6,6 +6,7 @@ public class Map {
 	private Array<Street> vertical_streets;
 	private Array<Street> horizontal_streets;
 	private Array<Intersection> intersections;
+	private Array<Car> cars;
 
 
 	public Array<Street> getVertical_streets(){
@@ -18,6 +19,10 @@ public class Map {
 
 	public Array<Intersection> getIntersections(){
 		return intersections;
+	}
+
+	public Array<Car> getCars(){
+		return cars;
 	}
 
 	private void addIntersection(double x, double y){
@@ -40,5 +45,9 @@ public class Map {
 		else horizontal_streets.add(s);
 
 		addIntersections(vertical, position);
+	}
+
+	public void addCar(Car c){
+		cars.add(c);
 	}
 }
