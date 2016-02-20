@@ -11,6 +11,8 @@ public class Car {
 	protected double speed;
 	protected int direction; //1 or -1
 
+	//SPRITE with rotation functions
+
 	protected boolean at_intersection;
 	protected Intersection intersection;
 
@@ -51,7 +53,6 @@ public class Car {
 		}
 		intersection = null;
 		at_intersection = false;
-		return;
 	}
 
 	public void setStreet(Street s){
@@ -68,5 +69,12 @@ public class Car {
 
 	public void setAtIntersection(boolean b){
 		at_intersection = b;
+	}
+
+	public void turn_right(){
+
+	}
+	public void turn_left(){
+
 	}
 }

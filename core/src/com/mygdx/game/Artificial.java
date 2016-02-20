@@ -20,14 +20,20 @@ public class Artificial extends Car{
 			}
 			if(rn == 2){
 				//turn right
-
-				//new street is the street with vert != vert and pos pos
+				//change street
+				street = (street.isVertical() ? intersection.getHorizontal() : intersection.getVertical());
+				//direction
+				if(!street.isVertical()) direction *= -1;
 				//new pos is exact pos of intersection
-				//rotate car
+				position = (street.isVertical() ? intersection.getHorizontal().getPosition() : intersection.getVertical().getPosition());
+				//rotate car TODO
+
 			}
 			if(rn == 3){
 				//turn left
-				//new street
+				street = (street.isVertical() ? intersection.getHorizontal() : intersection.getVertical());
+				if(street.isVertical()) direction *= -1;
+				position = (street.isVertical() ? intersection.getHorizontal().getPosition() : intersection.getVertical().getPosition());
 			}
 		}
 		else{
