@@ -9,7 +9,7 @@ public class Map {
 	private Array<Car> cars;
 
 	//SPRITE
-	//generacio del mapa
+	//generacio del mapa.
 
 
 	public Array<Street> getVertical_streets(){
