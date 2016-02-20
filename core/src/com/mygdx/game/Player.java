@@ -18,80 +18,22 @@ public class Player extends Car {
         return player;
     }
 
+    public static void setNextDir(Direction dir) {
+        next_dir = dir;
+    }
+
     @Override
     public void next_position(){
         //TODO:check trafic lights
-        if (next_dir != null) {
-            Direction dir = getCarDirection();
-            switch (dir) {
-                case UP:
-                    switch(next_dir) {
-                        case UP:
-                            go_straight();
-                            break;
-                        case DOWN:
-                            u_turn();
-                            break;
-                        case RIGHT:
-                            turn_right();
-                            break;
-                        case LEFT:
-                            turn_left();
-                            break;
-                    }
-                    break;
-                case DOWN:
-                    switch(next_dir) {
-                        case UP:
-                            u_turn();
-                            break;
-                        case DOWN:
-                            go_straight();
-                            break;
-                        case RIGHT:
-                            turn_left();
-                            break;
-                        case LEFT:
-                            turn_right();
-                            break;
-                    }
-                    break;
-                case RIGHT:
-                    switch(next_dir) {
-                        case UP:
-                            turn_left();
-                            break;
-                        case DOWN:
-                            turn_right();
-                            break;
-                        case RIGHT:
-                            go_straight();
-                            break;
-                        case LEFT:
-                            u_turn();
-                            break;
-                    }
-                    break;
-                case LEFT:
-                    switch(next_dir) {
-                        case UP:
-                            turn_right();
-                            break;
-                        case DOWN:
-                            turn_left();
-                            break;
-                        case RIGHT:
-                            u_turn();
-                            break;
-                        case LEFT:
-                            go_straight();
-                            break;
-                    }
-                    break;
-            }
+        if (at_intersection) {
+            if (next_dir != null) {
+                setRelativeDirectionCourse(next_dir);
+            } else
+                go_straight();
         }
         else
             go_straight();
+
         next_dir = null;
     }
 }

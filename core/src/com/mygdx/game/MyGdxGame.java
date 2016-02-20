@@ -33,8 +33,8 @@ public class MyGdxGame extends ApplicationAdapter {
 		cam.update();
 
 		map = new Map();
-		map.addStreet(true, WORLD_WIDTH/2);
-		map.addStreet(false, WORLD_HEIGHT/2);
+		map.addStreet(true, WORLD_WIDTH / 2);
+		map.addStreet(false, WORLD_HEIGHT / 2);
 
 		//STREET OBJ --> player = new Player();
 
@@ -43,6 +43,28 @@ public class MyGdxGame extends ApplicationAdapter {
 		artificial = new Texture("cotxenormalgroc.png");
 		cop = new Texture("poli.png");
 
+		Gdx.input.setInputProcessor(new SimpleDirectionGestureDetector(new SimpleDirectionGestureDetector.DirectionListener() {
+
+			@Override
+			public void onUp() {
+                Player.setNextDir(Car.Direction.UP);
+			}
+
+			@Override
+			public void onRight() {
+                Player.setNextDir(Car.Direction.RIGHT);
+			}
+
+			@Override
+			public void onLeft() {
+                Player.setNextDir(Car.Direction.LEFT);
+            }
+
+			@Override
+			public void onDown() {
+                Player.setNextDir(Car.Direction.DOWN);
+			}
+		}));
 	}
 
 	private void spawnCop(){
@@ -54,7 +76,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	}
 
 	@Override
-	public void render () {
+	public void render() {
 		cam.update();
 		batch.setProjectionMatrix(cam.combined);
 		Pair<Double, Double> coord = player.getCoordinates();
