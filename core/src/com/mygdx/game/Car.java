@@ -1,16 +1,24 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.utils.Array;
+
+import java.util.Iterator;
+
 public class Car {
 	protected Street street;
 	protected double position;
 	protected double speed;
+	protected int direction; //1 or -1
 
 	protected boolean at_intersection;
+	protected Intersection intersection;
 
 	public Car(Street street, double position, double speed){
 		this.street = street;
 		this.position = position;
 		this.speed = speed;
+		intersection = null;
 	}
 
 	public  Car(){
@@ -29,8 +37,21 @@ public class Car {
 		return speed;
 	}
 
-	public boolean isAtIntersection() {
-		return at_intersection;
+	public boolean isAtIntersection() {	return at_intersection;	}
+
+	public void checkIntersections(Array<Intersection> intersections) {
+		Iterator<Intersection> iter = intersections.iterator();
+		while (iter.hasNext()) {
+			Intersection i = iter.next();
+			if(i.contains((street.isVertical() ? street.getPosition() : position), (street.isVertical() ? position : street.getPosition()))){
+				intersection = i;
+				at_intersection = true;
+				return;
+			}
+		}
+		intersection = null;
+		at_intersection = false;
+		return;
 	}
 
 	public void setStreet(Street s){
