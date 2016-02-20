@@ -4,6 +4,8 @@ public class Intersection {
 	private double x;
 	private double y;
 
+	private boolean green_light;
+
 	public Intersection(double x, double y){
 		this.x = x;
 		this.y = y;

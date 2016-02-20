@@ -13,6 +13,7 @@ public class Artificial extends Car{
 			Random r = new Random();
 			int rn = r.nextInt((3 - 1) + 1) + 1;
 			if(rn == 1){
+				//TODO: check if within map
 				position += speed;
 			}
 			if(rn == 2){
@@ -22,8 +23,8 @@ public class Artificial extends Car{
 				//turn left
 			}
 		}
-		if(){
-			//TODO: check if within map
+		else{
+			//TODO: check
 			position += speed;
 		}
 	}
