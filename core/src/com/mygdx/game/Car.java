@@ -5,7 +5,14 @@ import com.badlogic.gdx.utils.Array;
 
 import java.util.Iterator;
 
+import javafx.util.Pair;
+
 public abstract class Car {
+
+    protected enum Direction {
+        LEFT, DOWN, RIGHT, UP
+    }
+
 	protected Street street;
 	protected double position;
 	protected double speed;
@@ -20,6 +27,7 @@ public abstract class Car {
 		this.street = street;
 		this.position = position;
 		this.speed = speed;
+        this.direction = 1;
 		intersection = null;
 	}
 
@@ -71,6 +79,20 @@ public abstract class Car {
 		at_intersection = b;
 	}
 
+    public Pair<Double,Double> getCoordinates() {
+        Double x,y;
+        if (street.isVertical()) {
+            x = street.getPosition();
+            y = getPosition();
+        }
+        else {
+            y = street.getPosition();
+            x = getPosition();
+        }
+
+        return new Pair<Double, Double>(x,y);
+    }
+
     public void u_turn() {
         //TODO: check if within map
         direction*=-1;
@@ -101,7 +123,44 @@ public abstract class Car {
         speed = 0;
     }
 
-    //public static
+    public Direction getCarDirection() {
+        if (street.isVertical()) {
+            if (direction > 1)
+                return Direction.UP;
+            else
+                return Direction.DOWN;
+        }
+        else {
+            if (direction > 1)
+                return Direction.RIGHT;
+            else
+                return Direction.LEFT;
+        }
+    }
+
+    public static Direction getPlayerCarDirection(Car dest, Car source) {
+        Pair<Double,Double> d_car_coord = dest.getCoordinates();
+        Pair<Double,Double> s_car_coord = source.getCoordinates();
+
+        Direction d_car_dir;
+        Double x_distance = d_car_coord.getKey()-s_car_coord.getKey();
+        Double y_distance = d_car_coord.getValue()-s_car_coord.getValue();
+
+        //Get player car direction from this police car
+        if (Math.abs(x_distance) < Math.abs(y_distance)) {
+            if (y_distance > 0)
+                d_car_dir = Direction.UP;
+            else
+                d_car_dir = Direction.DOWN;
+        }
+        else {
+            if (x_distance > 0)
+                d_car_dir = Direction.RIGHT;
+            else
+                d_car_dir = Direction.LEFT;
+        }
+        return d_car_dir;
+    }
 
     public abstract void next_position();
 
