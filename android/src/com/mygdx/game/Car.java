@@ -1,11 +1,11 @@
 package com.mygdx.game;
 
 public class Car {
-	private Street street;
-	private double position;
-	private double speed;
+	protected Street street;
+	protected double position;
+	protected double speed;
 
-	private boolean at_intersection;
+	protected boolean at_intersection;
 
 	public Car(Street street, double position, double speed){
 		this.street = street;
