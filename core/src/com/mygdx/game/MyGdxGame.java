@@ -116,7 +116,7 @@ public class MyGdxGame extends ApplicationAdapter implements InputProcessor {
 			if (cop.r.overlaps(player.r)){
 				gameOver();
 			}
-			cop.r.setPosition(cop.getPosicio(), cop.y);
+			cop.r.setPosition(cop.getPosicior(), cop.y);
 		}
 	}
 
