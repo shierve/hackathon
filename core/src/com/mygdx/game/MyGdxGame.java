@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
@@ -17,9 +18,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import java.util.Iterator;
 
 public class MyGdxGame extends ApplicationAdapter implements InputProcessor {
-	private static final int tubevel = 200;
+	private static final int copvel = 200;
 	private static final int COMP = 2000000000;
-	private static final float ACC = -600;
 
 	private OrthographicCamera cam;
 	Vector3 tp = new Vector3();
@@ -30,6 +30,8 @@ public class MyGdxGame extends ApplicationAdapter implements InputProcessor {
 	Texture background;
 	Texture car, cop;
 	Array<Cop> cops = new Array<Cop>();
+
+	Rectangle player = new Rectangle();//TODO
 
 	int posicio = 1;
 	
@@ -73,11 +75,10 @@ public class MyGdxGame extends ApplicationAdapter implements InputProcessor {
 		Iterator<Cop> iter = cops.iterator();
 		while (iter.hasNext()) {
 			Cop cop = iter.next();
-			/*tube.topTube.x -= tubevel * Gdx.graphics.getDeltaTime();
-			tube.bottomTube.x -= tubevel * Gdx.graphics.getDeltaTime();
-			if (tube.topTube.x + 128 < 0)
+			cop.y -= copvel * Gdx.graphics.getDeltaTime();
+			if (cop.y + 260 < 0)
 				iter.remove();
-			if (tube.topTube.overlaps(bird) || tube.bottomTube.overlaps(bird)){
+			if (cop.r.overlaps() || tube.bottomTube.overlaps(bird)){
 				gameOver();
 			}*/
 		}

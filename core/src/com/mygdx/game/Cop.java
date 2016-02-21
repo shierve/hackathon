@@ -1,20 +1,17 @@
 package com.mygdx.game;
 
-public class Cop extends Car{
+import com.badlogic.gdx.math.Rectangle;
 
-	public Cop(Street street, double position, double speed){
-		super(street, position, speed);
-	}
+public class Cop{
+    private int posicio; //0, 1, 2 (X)
+	public int y;
+	public Rectangle r;
 
-    @Override
-	public void next_position(){
-        //TODO: check traffic lights
-        if(at_intersection){
-            Direction dest_dir = getPlayerCarDirection(this);
-            setRelativeDirectionCourse(dest_dir);
-        }
-        else{
-            go_straight();
-        }
+
+	public Cop(int posicio, int height){
+		this.posicio = posicio;
+		y = height+260;
+		r = new Rectangle(posicio, y, 148, 260);
 	}
+	public int getPosicio(){ return posicio; }
 }
