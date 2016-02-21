@@ -31,9 +31,7 @@ public class MyGdxGame extends ApplicationAdapter implements InputProcessor {
 	Texture car, cop;
 	Array<Cop> cops = new Array<Cop>();
 
-	Rectangle player = new Rectangle();//TODO
-
-	int posicio = 1;
+	private Player player = new Player();
 	
 	@Override
 	public void create () {
@@ -59,17 +57,22 @@ public class MyGdxGame extends ApplicationAdapter implements InputProcessor {
 
 	}
 
+	private void gameOver(){
+
+	}
+
 	@Override
-	public void render () {
+	public void render (){
+
 		cam.update();
 		batch.setProjectionMatrix(cam.combined);
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 		//batch.draw(background, 0, 0);
-		if(posicio == 0) batch.draw(car, (cam.viewportWidth / 6f)-50, 30);
-		if(posicio == 1) batch.draw(car, (cam.viewportWidth / 2f)-50, 30);
-		if(posicio == 2) batch.draw(car, (cam.viewportWidth*5 / 6f)-50, 30);
+		if(player.posicio == 0) batch.draw(car, (cam.viewportWidth / 6f)-50, 30);
+		if(player.posicio == 1) batch.draw(car, (cam.viewportWidth / 2f)-50, 30);
+		if(player.posicio == 2) batch.draw(car, (cam.viewportWidth*5 / 6f)-50, 30);
 
 
 		Iterator<Cop> iter = cops.iterator();
@@ -78,9 +81,9 @@ public class MyGdxGame extends ApplicationAdapter implements InputProcessor {
 			cop.y -= copvel * Gdx.graphics.getDeltaTime();
 			if (cop.y + 260 < 0)
 				iter.remove();
-			if (cop.r.overlaps() || tube.bottomTube.overlaps(bird)){
+			if (cop.r.overlaps(player.r)){
 				gameOver();
-			}*/
+			}
 		}
 		batch.end();
 	}
@@ -108,10 +111,10 @@ public class MyGdxGame extends ApplicationAdapter implements InputProcessor {
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		cam.unproject(tp.set(screenX, screenY, 0));
-		if(tp.x < cam.viewportWidth / 2f) posicio--;
-		else posicio++;
-		if(posicio < 0) posicio = 0;
-		if(posicio > 2) posicio = 2;
+		if(tp.x < cam.viewportWidth / 2f) player.posicio--;
+		else player.posicio++;
+		if(player.posicio < 0) player.posicio = 0;
+		if(player.posicio > 2) player.posicio = 2;
 		return true;
 	}
 
